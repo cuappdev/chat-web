@@ -1,6 +1,7 @@
-@import '../../colors.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/fontWeights.scss';
 
-.container {
+.background {
   width: 256.7px;
   height: 100vh;
   background-color: $darkGrey;
@@ -14,21 +15,25 @@
 }
 
 .app-name {
+  font-family: 'Roboto', sans-serif;
   font-size: 48px;
-  font-weight: 500;
+  font-weight: $medium;
   padding: 0;
   color: $white;
-  padding-bottom: 220px;
+  margin-bottom: 220px;
 }
 
 .section-text {
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: $medium;
   color: $backgroundWash;
-  padding-bottom: 30px;
+  text-align: left;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .selected-section {
-  font-weight: 900;
+  font-weight: $black;
   color: $white;
 }

@@ -4,7 +4,7 @@ import './styles.scss';
 
 const SideBar: React.FunctionComponent = () => (
   <div className="menu-container">
-    <div className="app-name">Helpe</div>
+    <div className="app-name">patch</div>
     <div className="section-text">Bug Reports</div>
     <div className="section-text selected-section">Customer Service</div>
     <div className="section-text">Feature Requests</div>

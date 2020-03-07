@@ -1,0 +1,33 @@
+@import '../../colors.scss';
+
+.inbox-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 387.3px;
+}
+
+.inbox-container header {
+  display: flex;
+  height: 50.5px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+  font-size: 18px;
+  font-weight: 500;
+  align-items: center;
+  padding-left: 32px;
+}
+
+.inbox-container input[type=text]{
+  width: 351.3px;
+  height: 31.5px;
+  border-radius: 4px;
+  background-color: $backgroundWash;
+  font-size: 18px;
+  font-weight: normal;
+  text-indent: 50.8px;
+  margin-top: 18px;
+  outline: none;
+  border: none;
+  display: flex;
+  align-self: center;
+}

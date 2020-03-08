@@ -1,13 +1,6 @@
 @import '../../styles/colors.scss';
 @import '../../styles/fontWeights.scss';
 
-.container {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  height: 100%;
-}
-
 .menu-container {
   display: flex;
   flex-direction: column;

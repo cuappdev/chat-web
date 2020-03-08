@@ -23,30 +23,28 @@ class SideBar extends React.Component<SideBarProps> {
   render() {
     const { sectionName } = this.props;
     return (
-      <div className="background">
-        <div className="menu-container">
-          <div className="app-name">Helpe</div>
-          <div
-            className={classNames(SECTION_TEXT, { 'selected-section': sectionName === SectionName.BugReports })}
-            onClick={() => this.sectionClicked(SectionName.BugReports)}
-            role="button"
-          >
-            {SectionName.BugReports}
-          </div>
-          <div
-            className={classNames(SECTION_TEXT, { 'selected-section': sectionName === SectionName.CustomerService })}
-            onClick={() => this.sectionClicked(SectionName.CustomerService)}
-            role="button"
-          >
-            {SectionName.CustomerService}
-          </div>
-          <div
-            className={classNames(SECTION_TEXT, { 'selected-section': sectionName === SectionName.FeatureRequests })}
-            onClick={() => this.sectionClicked(SectionName.FeatureRequests)}
-            role="button"
-          >
-            {SectionName.FeatureRequests}
-          </div>
+      <div className="menu-container">
+        <div className="app-name">patch</div>
+        <div
+          className={classNames(SECTION_TEXT, { 'selected-section': sectionName === SectionName.BugReports })}
+          onClick={() => this.sectionClicked(SectionName.BugReports)}
+          role="button"
+        >
+          {SectionName.BugReports}
+        </div>
+        <div
+          className={classNames(SECTION_TEXT, { 'selected-section': sectionName === SectionName.CustomerService })}
+          onClick={() => this.sectionClicked(SectionName.CustomerService)}
+          role="button"
+        >
+          {SectionName.CustomerService}
+        </div>
+        <div
+          className={classNames(SECTION_TEXT, { 'selected-section': sectionName === SectionName.FeatureRequests })}
+          onClick={() => this.sectionClicked(SectionName.FeatureRequests)}
+          role="button"
+        >
+          {SectionName.FeatureRequests}
         </div>
       </div>
     );

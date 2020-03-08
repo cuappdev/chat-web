@@ -1,0 +1,138 @@
+@import '../../styles/colors.scss';
+@import '../../styles/fontWeights.scss';
+
+.inbox-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 387.3px;
+  border-right-style: solid;
+  border-right-color: $mediumGrey;
+  border-right-width: 1px;
+}
+
+.inbox-container header {
+  display: flex;
+  height: 50.5px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+  font-size: 18px;
+  font-weight: $medium;
+  color: $black;
+  align-items: center;
+  padding-left: 32px;
+  margin-right: -1px;
+  background-color: $white;
+}
+
+.inbox-container input[type=text]{
+  width: 351.3px;
+  height: 31.5px;
+  border-radius: 4px;
+  background-color: $backgroundWash;
+  font-size: 18px;
+  font-weight: $regular;
+  text-indent: 50.8px;
+  margin-top: 18px;
+  outline: none;
+  border: none;
+  display: flex;
+  align-self: center;
+}
+
+.divider {
+  color: $mediumGrey;
+  height: 1px;
+}
+
+.section-header {
+  display: inline-flex;
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-weight: $regular;
+  color: $black;
+  line-height: normal;
+  padding-top: 26.8px;
+  padding-bottom: 13px;
+}
+
+.section-header-button {
+  padding: 0px 21px 0px 23px;
+  width: 20px;
+  height: 20px;
+}
+.section-header-button:hover {
+  background-color: transparent;
+}
+
+.section-header-button-icon {
+  fill: $black;
+}
+
+.list-item {
+  padding: 13.5px 17.5px 14.9px 17.5px;
+  border-bottom: 1px;
+  border-bottom-color: $mediumGrey;
+  border-bottom-style: solid;
+}
+
+.list-item-focused {
+  background-color: $mediumGrey;
+}
+
+.text {
+  margin: 0px;
+}
+
+.primary-text {
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-weight: $medium;
+  color: $black;
+  line-height: normal;
+}
+
+.secondary-text {
+  font-family: 'Roboto';
+  font-size: 12px;
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: $darkGrey;
+  line-height: normal;
+  padding-top: 7px;
+}
+
+.icon {
+  align-self: flex-start;
+  height: 14.4px;
+  min-width: 14.4px;
+  padding-right: 12.5px;
+  padding-top: 4px;
+}
+
+.checkbox {
+  height: 100%;
+  width: 14.4px;
+  color: $mediumGrey;
+  padding: 0px;
+  align-self: baseline;
+}
+
+.checkbox-focused {
+  color: $white;
+}
+
+.checkbox-checked {
+  color: $black;
+}
+
+.checkbox:hover, .checkbox-checked:hover {
+  background-color: transparent;
+}

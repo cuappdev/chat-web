@@ -1,4 +1,5 @@
 @import '../../styles/colors.scss';
+@import '../../styles/fontWeights.scss';
 
 .inbox-container {
   display: flex;
@@ -15,7 +16,7 @@
   height: 50.5px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
   font-size: 18px;
-  font-weight: 500;
+  font-weight: $medium;
   color: $black;
   align-items: center;
   padding-left: 32px;
@@ -29,7 +30,7 @@
   border-radius: 4px;
   background-color: $backgroundWash;
   font-size: 18px;
-  font-weight: normal;
+  font-weight: $regular;
   text-indent: 50.8px;
   margin-top: 18px;
   outline: none;
@@ -47,7 +48,7 @@
   display: inline-flex;
   font-family: 'Roboto';
   font-size: 18px;
-  font-weight: normal;
+  font-weight: $regular;
   color: $black;
   line-height: normal;
   padding-top: 26.8px;
@@ -90,7 +91,7 @@
   overflow: hidden;
   font-family: 'Roboto';
   font-size: 18px;
-  font-weight: 500;
+  font-weight: $medium;
   color: $black;
   line-height: normal;
 }

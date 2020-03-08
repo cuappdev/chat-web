@@ -1,9 +1,6 @@
 import { AppAction, CHANGE_SECTION, SectionName } from './actionTypes';
 
-function changeSection(sectionName: SectionName): AppAction {
+// eslint-disable-next-line import/prefer-default-export
+export function changeSection(sectionName: SectionName): AppAction {
   return { type: CHANGE_SECTION, sectionName };
 }
-
-export default {
-  changeSection,
-};

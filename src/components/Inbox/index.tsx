@@ -8,7 +8,25 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import { StylesProvider } from '@material-ui/core/styles';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
+
 import './styles.scss';
+
+export interface InboxItem {
+  title: string;
+  message: string;
+}
+
+const dummyShortItem: InboxItem = {
+  title: 'Button not working',
+  message: 'The popular times button does nothing',
+};
+
+const dummyLongItem: InboxItem = {
+  title: 'Really really really really really really reaalllllly long',
+  message: 'asdfaskjfdhflkajghajwehrafbjdknsfhqguefhabjdknhluky2gevbf',
+};
+
+const dummyItems: InboxItem[] = [dummyShortItem, dummyLongItem, dummyShortItem, dummyShortItem];
 
 const Inbox: React.FunctionComponent = () => (
   <StylesProvider injectFirst>
@@ -34,52 +52,31 @@ const Inbox: React.FunctionComponent = () => (
         )}
       >
         <Divider classes={{ root: 'divider' }} />
-        <ListItem button classes={{ root: 'list-item' }}>
-          <ListItemIcon classes={{ root: 'icon' }}>
-            <Checkbox
+        {dummyItems.map((item) => (
+          <ListItem button classes={{ root: 'list-item', selected: 'list-item-focused' }}>
+            <ListItemIcon classes={{ root: 'icon' }}>
+              <Checkbox
+                classes={{
+                  root: 'checkbox',
+                  checked: 'checkbox-checked',
+                  colorSecondary: 'checkbox-checked',
+                }}
+                size="small"
+                disableTouchRipple
+                color="default"
+              />
+            </ListItemIcon>
+            <ListItemText
               classes={{
-                root: 'checkbox',
-                checked: 'checkbox-checked',
-                colorSecondary: 'checkbox-checked',
+                root: 'text',
+                primary: 'primary-text',
+                secondary: 'secondary-text',
               }}
-              size="small"
-              disableTouchRipple
-              color="default"
+              primary={item.title}
+              secondary={item.message}
             />
-          </ListItemIcon>
-          <ListItemText
-            classes={{
-              root: 'text',
-              primary: 'primary-text',
-              secondary: 'secondary-text',
-            }}
-            primary="Button not working"
-            secondary="The popular times button does nothing"
-          />
-        </ListItem>
-        <ListItem button classes={{ root: 'list-item', selected: 'list-item-focused' }}>
-          <ListItemIcon classes={{ root: 'icon' }}>
-            <Checkbox
-              classes={{
-                root: 'checkbox',
-                checked: 'checkbox-checked',
-                colorSecondary: 'checkbox-checked',
-              }}
-              size="small"
-              disableTouchRipple
-              color="default"
-            />
-          </ListItemIcon>
-          <ListItemText
-            classes={{
-              root: 'text',
-              primary: 'primary-text',
-              secondary: 'secondary-text',
-            }}
-            primary="Really really really really really really reaalllllly long"
-            secondary="asdfaskjfdhflkajghajwehrafbjdknsfhqguefhabjdknhluky2gevbf"
-          />
-        </ListItem>
+          </ListItem>
+        ))}
       </List>
     </div>
   </StylesProvider>

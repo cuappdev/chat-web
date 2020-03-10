@@ -17,7 +17,7 @@
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
   font-size: 18px;
   font-weight: $medium;
-  color: $black;
+  color: $darkBlack;
   align-items: center;
   padding-left: 32px;
   margin-right: -1px;
@@ -47,9 +47,9 @@
 .section-header {
   display: inline-flex;
   font-family: 'Roboto';
+  color: $darkBlack;
   font-size: 18px;
   font-weight: $regular;
-  color: $black;
   line-height: normal;
   padding-top: 26.8px;
   padding-bottom: 13px;
@@ -65,7 +65,7 @@
 }
 
 .section-header-button-icon {
-  fill: $black;
+  fill: $darkBlack;
 }
 
 .list-item {
@@ -92,7 +92,7 @@
   font-family: 'Roboto';
   font-size: 18px;
   font-weight: $medium;
-  color: $black;
+  color: $darkBlack;
   line-height: normal;
 }
 
@@ -130,7 +130,7 @@
 }
 
 .checkbox-checked {
-  color: $black;
+  color: $darkBlack;
 }
 
 .checkbox:hover, .checkbox-checked:hover {

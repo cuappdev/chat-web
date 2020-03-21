@@ -6,5 +6,10 @@ export enum SectionName {
   FeatureRequests = 'Feature Requests',
 }
 
+export enum InboxSection {
+  Unresolved = 'Unresolved',
+  Resolved = 'Resolved',
+}
+
 export type AppAction =
   | { type: typeof CHANGE_SECTION, sectionName: SectionName };

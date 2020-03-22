@@ -1,4 +1,7 @@
 import React from 'react';
+
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import { connect } from 'react-redux';
 import { Checkbox, Divider, IconButton } from '@material-ui/core';
 import Collapse from '@material-ui/core/Collapse';
@@ -8,13 +11,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { StylesProvider } from '@material-ui/core/styles';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
-import { DispatchProps } from '../dispatchProps';
-import { InboxItem } from '../../models';
 import { AppAction } from '../../redux/actionTypes';
 import { AppState } from '../../redux/reducer';
+import { DispatchProps } from '../dispatchProps';
+import { InboxItem } from '../../models';
 import './styles.scss';
 
 interface InboxProps extends DispatchProps {
@@ -22,14 +23,14 @@ interface InboxProps extends DispatchProps {
   resolvedItems: InboxItem[]
 }
 
-interface InboxState {
-  unresolvedOpen: boolean,
-  resolvedOpen: boolean,
-}
-
 enum InboxSection {
   Unresolved = 'Unresolved',
   Resolved = 'Resolved',
+}
+
+interface InboxState {
+  unresolvedOpen: boolean,
+  resolvedOpen: boolean,
 }
 
 class Inbox extends React.Component<InboxProps, InboxState> {

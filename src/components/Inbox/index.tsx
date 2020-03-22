@@ -12,8 +12,8 @@ import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 import { DispatchProps } from '../dispatchProps';
-import { InboxItem } from '../../models/index';
-import { AppAction, InboxSection } from '../../redux/actionTypes';
+import { InboxItem } from '../../models';
+import { AppAction } from '../../redux/actionTypes';
 import { AppState } from '../../redux/reducer';
 import './styles.scss';
 
@@ -25,6 +25,11 @@ interface InboxProps extends DispatchProps {
 interface InboxState {
   unresolvedOpen: boolean,
   resolvedOpen: boolean,
+}
+
+enum InboxSection {
+  Unresolved = 'Unresolved',
+  Resolved = 'Resolved',
 }
 
 class Inbox extends React.Component<InboxProps, InboxState> {
@@ -51,10 +56,8 @@ class Inbox extends React.Component<InboxProps, InboxState> {
   };
 
   render() {
-    const { unresolvedItems } = this.props;
-    const { resolvedItems } = this.props;
-    const { unresolvedOpen } = this.state;
-    const { resolvedOpen } = this.state;
+    const { resolvedItems, unresolvedItems } = this.props;
+    const { resolvedOpen, unresolvedOpen } = this.state;
 
     return (
       <StylesProvider injectFirst>

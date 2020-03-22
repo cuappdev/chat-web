@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Inbox from '../Inbox';
-import { InboxItem } from '../../models/index';
+import { InboxItem } from '../../models';
 import SideBar from '../SideBar';
 import './styles.scss';
 

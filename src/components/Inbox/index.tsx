@@ -1,5 +1,3 @@
-import React from 'react';
-
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import { connect } from 'react-redux';
@@ -11,6 +9,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { StylesProvider } from '@material-ui/core/styles';
+import React from 'react';
 
 import { AppAction } from '../../redux/actionTypes';
 import { AppState } from '../../redux/reducer';
@@ -45,12 +44,12 @@ class Inbox extends React.Component<InboxProps, InboxState> {
   handleClick = (sectionName: string) => {
     if (sectionName === InboxSection.Unresolved) {
       this.setState((state) => ({
+        ...state,
         unresolvedOpen: !state.unresolvedOpen,
-        resolvedOpen: state.resolvedOpen,
       }));
     } else {
       this.setState((state) => ({
-        unresolvedOpen: state.unresolvedOpen,
+        ...state,
         resolvedOpen: !state.resolvedOpen,
       }));
     }
@@ -176,7 +175,6 @@ class Inbox extends React.Component<InboxProps, InboxState> {
     );
   }
 }
-
 
 const mapStateToProps = (state: AppState) => state;
 const mapDispatchToProps = (dispatch: any) => ({

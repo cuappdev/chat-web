@@ -4,7 +4,9 @@
 .inbox-container {
   display: flex;
   flex-direction: column;
+  overflow: auto;
   height: 100vh;
+  max-height: 100vh;
   width: 387.3px;
   border-right-style: solid;
   border-right-color: $mediumGrey;
@@ -13,7 +15,7 @@
 
 .inbox-container header {
   display: flex;
-  height: 50.5px;
+  min-height: 50.5px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
   font-size: 18px;
   font-weight: $medium;
@@ -26,7 +28,7 @@
 
 .inbox-container input[type=text]{
   width: 351.3px;
-  height: 31.5px;
+  min-height: 31.5px;
   border-radius: 4px;
   background-color: $backgroundWash;
   font-size: 18px;
@@ -47,9 +49,9 @@
 .section-header {
   display: inline-flex;
   font-family: 'Roboto';
+  color: $black;
   font-size: 18px;
   font-weight: $regular;
-  color: $black;
   line-height: normal;
   padding-top: 26.8px;
   padding-bottom: 13px;
@@ -75,7 +77,11 @@
   border-bottom-style: solid;
 }
 
-.list-item-focused {
+.list-item:hover {
+  background-color: transparent;
+}
+
+.list-item-focused, .list-item-focused:hover {
   background-color: $mediumGrey;
 }
 

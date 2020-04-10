@@ -11,10 +11,10 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import { StylesProvider } from '@material-ui/core/styles';
 import React, { useState } from 'react';
 
-import { AppAction } from '../../redux/actionTypes';
-import { AppState } from '../../redux/reducer';
-import { DispatchProps } from '../dispatchProps';
-import { InboxItem } from '../../models';
+import { DispatchProps } from 'components/dispatchProps';
+import { InboxItem } from 'models';
+import { AppAction } from 'redux/actionTypes';
+import { AppState } from 'redux/reducer';
 import './styles.scss';
 
 export interface InboxComponentProps extends DispatchProps {

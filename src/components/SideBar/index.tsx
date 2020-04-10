@@ -2,19 +2,19 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { DispatchProps } from '../dispatchProps';
-import { changeSection } from '../../redux/actions';
-import { AppAction, SectionName } from '../../redux/actionTypes';
-import { AppState } from '../../redux/reducer';
+import { DispatchProps } from 'components/dispatchProps';
+import { changeSection } from 'redux/actions';
+import { AppAction, SectionName } from 'redux/actionTypes';
+import { AppState } from 'redux/reducer';
 import './styles.scss';
 
 const SECTION_TEXT = 'section-text';
 
-interface SideBarProps extends DispatchProps {
+export interface SideBarProps extends DispatchProps {
   sectionName: string
 }
 
-export const SideBar: React.FunctionComponent<SideBarProps> = ({
+export const SideBarComponent: React.FunctionComponent<SideBarProps> = ({
   dispatch,
   sectionName,
 }) => {
@@ -50,9 +50,11 @@ export const SideBar: React.FunctionComponent<SideBarProps> = ({
   );
 };
 
-const mapStateToProps = (state: AppState) => state;
+const mapStateToProps = (state: AppState) => ({
+  sectionName: state.sectionName,
+});
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SideBar);
+export const SideBar = connect(mapStateToProps, mapDispatchToProps)(SideBarComponent);

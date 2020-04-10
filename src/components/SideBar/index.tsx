@@ -14,42 +14,41 @@ interface SideBarProps extends DispatchProps {
   sectionName: string
 }
 
-class SideBar extends React.Component<SideBarProps> {
-  sectionClicked(section: SectionName) {
-    const { dispatch } = this.props;
+export const SideBar: React.FunctionComponent<SideBarProps> = ({
+  dispatch,
+  sectionName,
+}) => {
+  const sectionClicked = (section: SectionName) => {
     dispatch(changeSection(section));
-  }
+  };
 
-  render() {
-    const { sectionName } = this.props;
-    return (
-      <div className="menu-container">
-        <div className="app-name">patch</div>
-        <div
-          className={classNames(SECTION_TEXT, { 'selected-section': sectionName === SectionName.BugReports })}
-          onClick={() => this.sectionClicked(SectionName.BugReports)}
-          role="button"
-        >
-          {SectionName.BugReports}
-        </div>
-        <div
-          className={classNames(SECTION_TEXT, { 'selected-section': sectionName === SectionName.CustomerService })}
-          onClick={() => this.sectionClicked(SectionName.CustomerService)}
-          role="button"
-        >
-          {SectionName.CustomerService}
-        </div>
-        <div
-          className={classNames(SECTION_TEXT, { 'selected-section': sectionName === SectionName.FeatureRequests })}
-          onClick={() => this.sectionClicked(SectionName.FeatureRequests)}
-          role="button"
-        >
-          {SectionName.FeatureRequests}
-        </div>
+  return (
+    <div className="menu-container">
+      <div className="app-name">patch</div>
+      <div
+        className={classNames(SECTION_TEXT, { 'selected-section': sectionName === SectionName.BugReports })}
+        onClick={() => sectionClicked(SectionName.BugReports)}
+        role="button"
+      >
+        {SectionName.BugReports}
       </div>
-    );
-  }
-}
+      <div
+        className={classNames(SECTION_TEXT, { 'selected-section': sectionName === SectionName.CustomerService })}
+        onClick={() => sectionClicked(SectionName.CustomerService)}
+        role="button"
+      >
+        {SectionName.CustomerService}
+      </div>
+      <div
+        className={classNames(SECTION_TEXT, { 'selected-section': sectionName === SectionName.FeatureRequests })}
+        onClick={() => sectionClicked(SectionName.FeatureRequests)}
+        role="button"
+      >
+        {SectionName.FeatureRequests}
+      </div>
+    </div>
+  );
+};
 
 const mapStateToProps = (state: AppState) => state;
 const mapDispatchToProps = (dispatch: any) => ({

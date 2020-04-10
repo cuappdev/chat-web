@@ -9,7 +9,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { StylesProvider } from '@material-ui/core/styles';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { AppAction } from '../../redux/actionTypes';
 import { AppState } from '../../redux/reducer';
@@ -17,7 +17,7 @@ import { DispatchProps } from '../dispatchProps';
 import { InboxItem } from '../../models';
 import './styles.scss';
 
-interface InboxProps extends DispatchProps {
+export interface InboxComponentProps extends DispatchProps {
   unresolvedItems: InboxItem[]
   resolvedItems: InboxItem[]
 }
@@ -27,158 +27,146 @@ enum InboxSection {
   Resolved = 'Resolved',
 }
 
-interface InboxState {
-  unresolvedOpen: boolean,
-  resolvedOpen: boolean,
-}
+export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
+  resolvedItems,
+  unresolvedItems,
+}) => {
+  const [unresolvedOpen, setUnresolvedOpen] = useState(true);
+  const [resolvedOpen, setResolvedOpen] = useState(true);
 
-class Inbox extends React.Component<InboxProps, InboxState> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      unresolvedOpen: true,
-      resolvedOpen: true,
-    };
-  }
-
-  handleClick = (sectionName: string) => {
+  const handleClick = (sectionName: string) => {
     if (sectionName === InboxSection.Unresolved) {
-      this.setState((state) => ({
-        ...state,
-        unresolvedOpen: !state.unresolvedOpen,
-      }));
+      setUnresolvedOpen(!unresolvedOpen);
     } else {
-      this.setState((state) => ({
-        ...state,
-        resolvedOpen: !state.resolvedOpen,
-      }));
+      setResolvedOpen(!resolvedOpen);
     }
   };
 
-  render() {
-    const { resolvedItems, unresolvedItems } = this.props;
-    const { resolvedOpen, unresolvedOpen } = this.state;
-
-    return (
-      <StylesProvider injectFirst>
-        <div className="inbox-container">
-          <header>Inbox</header>
-          <input type="text" placeholder="Search" />
-          <List
-            component="nav"
-            aria-label="unresolved"
-            subheader={(
-              <ListSubheader classes={{ root: 'section-header' }} disableGutters disableSticky>
-                <IconButton
-                  classes={{ root: 'section-header-button' }}
-                  disableRipple
-                  onClick={() => this.handleClick(InboxSection.Unresolved)}
-                >
-                  {unresolvedOpen ? (
+  return (
+    <StylesProvider injectFirst>
+      <div className="inbox-container">
+        <header>Inbox</header>
+        <input type="text" placeholder="Search" />
+        <List
+          component="nav"
+          aria-label="unresolved"
+          subheader={(
+            <ListSubheader classes={{ root: 'section-header' }} disableGutters disableSticky>
+              <IconButton
+                classes={{ root: 'section-header-button' }}
+                disableRipple
+                onClick={() => handleClick(InboxSection.Unresolved)}
+              >
+                {
+                  unresolvedOpen
+                    ? (
+                      <ArrowDropDownIcon
+                        classes={{ root: 'section-header-button-icon' }}
+                      />
+                    )
+                    : (
+                      <ArrowDropUpIcon
+                        classes={{ root: 'section-header-button-icon' }}
+                      />
+                    )
+                }
+              </IconButton>
+              {InboxSection.Unresolved}
+            </ListSubheader>
+          )}
+        >
+          <Divider classes={{ root: 'divider' }} />
+          <Collapse in={unresolvedOpen} timeout="auto" unmountOnExit>
+            {unresolvedItems.map((item) => (
+              <ListItem button classes={{ root: 'list-item', selected: 'list-item-focused' }} disableRipple>
+                <ListItemIcon classes={{ root: 'icon' }}>
+                  <Checkbox
+                    classes={{
+                      root: 'checkbox',
+                      checked: 'checkbox-checked',
+                      colorSecondary: 'checkbox-checked',
+                    }}
+                    size="small"
+                    disableRipple
+                    color="default"
+                  />
+                </ListItemIcon>
+                <ListItemText
+                  classes={{
+                    root: 'text',
+                    primary: 'primary-text',
+                    secondary: 'secondary-text',
+                  }}
+                  primary={item.title}
+                  secondary={item.message}
+                />
+              </ListItem>
+            ))}
+          </Collapse>
+        </List>
+        <List
+          component="nav"
+          aria-label="resolved"
+          subheader={(
+            <ListSubheader classes={{ root: 'section-header' }} disableGutters disableSticky>
+              <IconButton
+                classes={{ root: 'section-header-button' }}
+                disableRipple
+                onClick={() => handleClick(InboxSection.Resolved)}
+              >
+                {resolvedOpen
+                  ? (
                     <ArrowDropDownIcon
                       classes={{ root: 'section-header-button-icon' }}
                     />
-                  ) : (
+                  )
+                  : (
                     <ArrowDropUpIcon
                       classes={{ root: 'section-header-button-icon' }}
                     />
                   )}
-                </IconButton>
-                {InboxSection.Unresolved}
-              </ListSubheader>
-            )}
-          >
-            <Divider classes={{ root: 'divider' }} />
-            <Collapse in={unresolvedOpen} timeout="auto" unmountOnExit>
-              {unresolvedItems.map((item) => (
-                <ListItem button classes={{ root: 'list-item', selected: 'list-item-focused' }} disableRipple>
-                  <ListItemIcon classes={{ root: 'icon' }}>
-                    <Checkbox
-                      classes={{
-                        root: 'checkbox',
-                        checked: 'checkbox-checked',
-                        colorSecondary: 'checkbox-checked',
-                      }}
-                      size="small"
-                      disableRipple
-                      color="default"
-                    />
-                  </ListItemIcon>
-                  <ListItemText
+              </IconButton>
+              {InboxSection.Resolved}
+            </ListSubheader>
+          )}
+        >
+          <Divider classes={{ root: 'divider' }} />
+          <Collapse in={resolvedOpen} timeout="auto" unmountOnExit>
+            {resolvedItems.map((item) => (
+              <ListItem button classes={{ root: 'list-item', selected: 'list-item-focused' }} disableRipple>
+                <ListItemIcon classes={{ root: 'icon' }}>
+                  <Checkbox
                     classes={{
-                      root: 'text',
-                      primary: 'primary-text',
-                      secondary: 'secondary-text',
+                      root: 'checkbox',
+                      checked: 'checkbox-checked',
+                      colorSecondary: 'checkbox-checked',
                     }}
-                    primary={item.title}
-                    secondary={item.message}
+                    size="small"
+                    disableRipple
+                    color="default"
                   />
-                </ListItem>
-              ))}
-            </Collapse>
-          </List>
-          <List
-            component="nav"
-            aria-label="resolved"
-            subheader={(
-              <ListSubheader classes={{ root: 'section-header' }} disableGutters disableSticky>
-                <IconButton
-                  classes={{ root: 'section-header-button' }}
-                  disableRipple
-                  onClick={() => this.handleClick(InboxSection.Resolved)}
-                >
-                  {resolvedOpen ? (
-                    <ArrowDropDownIcon
-                      classes={{ root: 'section-header-button-icon' }}
-                    />
-                  ) : (
-                    <ArrowDropUpIcon
-                      classes={{ root: 'section-header-button-icon' }}
-                    />
-                  )}
-                </IconButton>
-                {InboxSection.Resolved}
-              </ListSubheader>
-            )}
-          >
-            <Divider classes={{ root: 'divider' }} />
-            <Collapse in={resolvedOpen} timeout="auto" unmountOnExit>
-              {resolvedItems.map((item) => (
-                <ListItem button classes={{ root: 'list-item', selected: 'list-item-focused' }} disableRipple>
-                  <ListItemIcon classes={{ root: 'icon' }}>
-                    <Checkbox
-                      classes={{
-                        root: 'checkbox',
-                        checked: 'checkbox-checked',
-                        colorSecondary: 'checkbox-checked',
-                      }}
-                      size="small"
-                      disableRipple
-                      color="default"
-                    />
-                  </ListItemIcon>
-                  <ListItemText
-                    classes={{
-                      root: 'text',
-                      primary: 'primary-text',
-                      secondary: 'secondary-text',
-                    }}
-                    primary={item.title}
-                    secondary={item.message}
-                  />
-                </ListItem>
-              ))}
-            </Collapse>
-          </List>
-        </div>
-      </StylesProvider>
-    );
-  }
-}
+                </ListItemIcon>
+                <ListItemText
+                  classes={{
+                    root: 'text',
+                    primary: 'primary-text',
+                    secondary: 'secondary-text',
+                  }}
+                  primary={item.title}
+                  secondary={item.message}
+                />
+              </ListItem>
+            ))}
+          </Collapse>
+        </List>
+      </div>
+    </StylesProvider>
+  );
+};
 
 const mapStateToProps = (state: AppState) => state;
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Inbox);
+export const Inbox = connect(mapStateToProps, mapDispatchToProps)(InboxComponent);

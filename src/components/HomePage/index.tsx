@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Inbox from '../Inbox';
+import { Inbox, SideBar } from 'components';
 import { InboxItem } from '../../models';
-import SideBar from '../SideBar';
+
 import './styles.scss';
 
 const dummyShortItem: InboxItem = {
@@ -18,11 +18,9 @@ const dummyLongItem: InboxItem = {
 const dummyItems: InboxItem[] = [dummyShortItem, dummyLongItem, dummyShortItem,
   dummyShortItem, dummyLongItem, dummyLongItem];
 
-const HomePage: React.FunctionComponent = () => (
+export const HomePage: React.FunctionComponent = () => (
   <div className="container">
     <SideBar />
     <Inbox unresolvedItems={dummyItems} resolvedItems={dummyItems} />
   </div>
 );
-
-export default HomePage;

@@ -1,9 +1,3 @@
-import HomePage from './HomePage';
-import SideBar from './SideBar';
-import Inbox from './Inbox';
-
-export {
-  HomePage,
-  SideBar,
-  Inbox,
-};
+export { HomePage } from './HomePage';
+export { Inbox } from './Inbox';
+export { SideBar } from './SideBar';

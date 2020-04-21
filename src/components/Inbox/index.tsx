@@ -1,17 +1,16 @@
 import {
   Checkbox as MUICheckbox,
+  Collapse,
   Divider as MUIDivider,
   Grid,
   IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  ListSubheader,
+  StylesProvider,
 } from '@material-ui/core';
-import Collapse from '@material-ui/core/Collapse';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import { StylesProvider } from '@material-ui/core/styles';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import { ArrowDropDown, ArrowDropUp } from '@material-ui/icons';
 import { DispatchProps } from 'components/dispatchProps';
 import { InboxItem } from 'models';
 import React, { useState } from 'react';
@@ -40,9 +39,9 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
 
   const arrowIcon = (open: boolean) => {
     return open ? (
-      <ArrowDropDownIcon style={{ fill: theme.colors.black }} />
+      <ArrowDropDown style={{ fill: theme.colors.black }} />
     ) : (
-      <ArrowDropUpIcon style={{ fill: theme.colors.black }} />
+      <ArrowDropUp style={{ fill: theme.colors.black }} />
     );
   };
 

@@ -1,4 +1,4 @@
-import Grid from '@material-ui/core/Grid';
+import { Grid } from '@material-ui/core';
 import { Inbox, SideBar } from 'components';
 import { InboxItem } from 'models';
 import React from 'react';

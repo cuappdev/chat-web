@@ -6,5 +6,7 @@ export enum SectionName {
   FeatureRequests = 'Feature Requests',
 }
 
-export type AppAction =
-  | { type: typeof CHANGE_SECTION, sectionName: SectionName };
+export type AppAction = {
+  type: typeof CHANGE_SECTION;
+  sectionName: SectionName;
+};

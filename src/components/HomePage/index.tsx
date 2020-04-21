@@ -1,9 +1,7 @@
-import React from 'react';
-
+import { Grid } from '@material-ui/core';
 import { Inbox, SideBar } from 'components';
 import { InboxItem } from 'models';
-
-import './styles.scss';
+import React from 'react';
 
 const dummyShortItem: InboxItem = {
   title: 'Button not working',
@@ -15,12 +13,20 @@ const dummyLongItem: InboxItem = {
   message: 'asdfaskjfdhflkajghajwehrafbjdknsfhqguefhabjdknhluky2gevbf',
 };
 
-const dummyItems: InboxItem[] = [dummyShortItem, dummyLongItem, dummyShortItem,
-  dummyShortItem, dummyLongItem, dummyLongItem];
+const dummyItems: InboxItem[] = [
+  dummyShortItem,
+  dummyLongItem,
+  dummyShortItem,
+  dummyShortItem,
+  dummyLongItem,
+  dummyLongItem,
+];
 
-export const HomePage: React.FunctionComponent = () => (
-  <div className="container">
-    <SideBar />
-    <Inbox unresolvedItems={dummyItems} resolvedItems={dummyItems} />
-  </div>
-);
+export const HomePage: React.FunctionComponent = () => {
+  return (
+    <Grid container direction="row" alignItems="stretch">
+      <SideBar />
+      <Inbox unresolvedItems={dummyItems} resolvedItems={dummyItems} />
+    </Grid>
+  );
+};

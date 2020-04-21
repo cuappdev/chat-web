@@ -1,8 +1,6 @@
 import React from 'react';
-
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-
+import { createStore } from 'redux';
 import { HomePage } from './components';
 import reducer from './redux/reducer';
 

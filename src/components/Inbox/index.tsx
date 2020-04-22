@@ -36,6 +36,7 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
 }) => {
   const [unresolvedOpen, setUnresolvedOpen] = useState(true);
   const [resolvedOpen, setResolvedOpen] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const arrowIcon = (open: boolean) => {
     return open ? (
@@ -53,11 +54,26 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
     }
   };
 
+  const handleSearch = (event: any) => {
+    console.log("handleSearch with", event.target.value)
+    setSearchQuery(event.target.value)
+  }
+
+  const filteredItems = (items: InboxItem[]) => {
+    if (searchQuery) {
+      return items.filter(item => {
+        return (item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.message.toLowerCase().includes(searchQuery.toLowerCase()))
+      })
+    } else {
+      return items
+    }
+  }
+
   return (
     <StylesProvider injectFirst>
       <Container direction="column">
         <InboxHeader>Inbox</InboxHeader>
-        <SearchBar type="text" placeholder="Search" />
+        <SearchBar type="text" placeholder="Search" onChange={handleSearch}/>
         <List
           component="nav"
           aria-label="unresolved"
@@ -75,7 +91,7 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
         >
           <Divider />
           <Collapse in={unresolvedOpen} timeout="auto" unmountOnExit>
-            {unresolvedItems.map((item) => (
+            {filteredItems(unresolvedItems).map((item) => (
               <InboxItemContainer button disableRipple>
                 <Checkbox size="small" disableRipple />
                 <InboxItemText primary={item.title} secondary={item.message} />
@@ -100,7 +116,7 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
         >
           <Divider />
           <Collapse in={resolvedOpen} timeout="auto" unmountOnExit>
-            {resolvedItems.map((item) => (
+            {filteredItems(resolvedItems).map((item) => (
               <InboxItemContainer button disableRipple>
                 <Checkbox size="small" disableRipple />
                 <InboxItemText primary={item.title} secondary={item.message} />

@@ -10,7 +10,7 @@ import {
   ListSubheader,
   StylesProvider,
 } from '@material-ui/core';
-import { ArrowDropDown, ArrowDropUp } from '@material-ui/icons';
+import { ArrowDropDown, ArrowRight } from '@material-ui/icons';
 import { DispatchProps } from 'components/dispatchProps';
 import { InboxItem } from 'models';
 import React, { useState } from 'react';
@@ -40,12 +40,13 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
 }) => {
   const [unresolvedOpen, setUnresolvedOpen] = useState(true);
   const [resolvedOpen, setResolvedOpen] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const arrowIcon = (open: boolean) => {
     return open ? (
       <ArrowDropDown style={{ fill: theme.colors.black }} />
     ) : (
-      <ArrowDropUp style={{ fill: theme.colors.black }} />
+      <ArrowRight style={{ fill: theme.colors.black }} />
     );
   };
 
@@ -83,11 +84,29 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
     );
   };
 
+  const handleSearch = (event: any) => {
+    console.log('handleSearch with', event.target.value);
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredItems = (items: InboxItem[]) => {
+    if (searchQuery) {
+      return items.filter((item) => {
+        return (
+          item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.message.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+      });
+    } else {
+      return items;
+    }
+  };
+
   return (
     <StylesProvider injectFirst>
       <Container direction="column">
         <InboxHeader>Inbox</InboxHeader>
-        <SearchBar type="text" placeholder="Search" />
+        <SearchBar type="text" placeholder="Search" onChange={handleSearch} />
         <List
           component="nav"
           aria-label="unresolved"
@@ -105,7 +124,9 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
         >
           <Divider />
           <Collapse in={unresolvedOpen} timeout="auto" unmountOnExit>
-            {unresolvedItems.map((item) => inboxItemComponent(item))}
+            {filteredItems(unresolvedItems).map((item) =>
+              inboxItemComponent(item),
+            )}
           </Collapse>
         </List>
         <List
@@ -125,7 +146,9 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
         >
           <Divider />
           <Collapse in={resolvedOpen} timeout="auto" unmountOnExit>
-            {resolvedItems.map((item) => inboxItemComponent(item))}
+            {filteredItems(resolvedItems).map((item) =>
+              inboxItemComponent(item),
+            )}
           </Collapse>
         </List>
       </Container>

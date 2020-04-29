@@ -17,12 +17,14 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { AppAction } from 'redux/actionTypes';
 import { AppState } from 'redux/reducer';
+import { selectInboxItem } from 'redux/actions';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
 export interface InboxComponentProps extends DispatchProps {
   unresolvedItems: InboxItem[];
   resolvedItems: InboxItem[];
+  selectedItem: InboxItem | undefined;
 }
 
 enum InboxSection {
@@ -31,6 +33,8 @@ enum InboxSection {
 }
 
 export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
+  dispatch,
+  selectedItem,
   resolvedItems,
   unresolvedItems,
 }) => {
@@ -51,6 +55,32 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
     } else {
       setResolvedOpen(!resolvedOpen);
     }
+  };
+
+  const itemToggled = (item: InboxItem | undefined) => {
+    dispatch(selectInboxItem(item));
+  };
+
+  const checked = (e: any) => {
+    e.stopPropagation();
+  };
+
+  const inboxItemComponent = (item: InboxItem) => {
+    const selected = item === selectedItem;
+    const select = () => itemToggled(item);
+    const deselect = () => itemToggled(undefined);
+
+    return selected ? (
+      <InboxItemContainer button disableRipple selected onClick={deselect}>
+        <Checkbox size="small" disableRipple onClick={checked} />
+        <InboxItemText primary={item.title} secondary={item.message} />
+      </InboxItemContainer>
+    ) : (
+      <InboxItemContainer button disableRipple onClick={select}>
+        <Checkbox size="small" disableRipple onClick={checked} />
+        <InboxItemText primary={item.title} secondary={item.message} />
+      </InboxItemContainer>
+    );
   };
 
   return (
@@ -75,12 +105,7 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
         >
           <Divider />
           <Collapse in={unresolvedOpen} timeout="auto" unmountOnExit>
-            {unresolvedItems.map((item) => (
-              <InboxItemContainer button disableRipple>
-                <Checkbox size="small" disableRipple />
-                <InboxItemText primary={item.title} secondary={item.message} />
-              </InboxItemContainer>
-            ))}
+            {unresolvedItems.map((item) => inboxItemComponent(item))}
           </Collapse>
         </List>
         <List
@@ -100,12 +125,7 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
         >
           <Divider />
           <Collapse in={resolvedOpen} timeout="auto" unmountOnExit>
-            {resolvedItems.map((item) => (
-              <InboxItemContainer button disableRipple>
-                <Checkbox size="small" disableRipple />
-                <InboxItemText primary={item.title} secondary={item.message} />
-              </InboxItemContainer>
-            ))}
+            {resolvedItems.map((item) => inboxItemComponent(item))}
           </Collapse>
         </List>
       </Container>
@@ -165,6 +185,12 @@ const InboxItemContainer = styled(ListItem)`
   border-bottom-color: ${theme.colors.mediumGrey};
   border-bottom-style: solid;
   &.Mui-selected, &.Mui-selected:hover {
+    ${Checkbox} {
+      color: ${theme.colors.darkGrey};
+      &.Mui-checked {
+        color: ${theme.colors.black};
+      }
+    };
     background-color: ${theme.colors.mediumGrey};
   },
   &:hover {
@@ -235,7 +261,9 @@ const SearchBar = styled.input`
   display: flex;
 `;
 
-const mapStateToProps = (state: AppState) => state;
+const mapStateToProps = (state: AppState) => ({
+  selectedItem: state.selectedItem,
+});
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),
 });

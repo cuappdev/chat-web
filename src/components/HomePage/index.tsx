@@ -13,10 +13,16 @@ const dummyLongItem: InboxItem = {
   message: 'asdfaskjfdhflkajghajwehrafbjdknsfhqguefhabjdknhluky2gevbf',
 };
 
+const searchTargetItem: InboxItem = {
+  title: 'special',
+  message: 'super top secret message'
+}
+
 const dummyItems: InboxItem[] = [
   dummyShortItem,
   dummyLongItem,
   dummyShortItem,
+  searchTargetItem,
   dummyShortItem,
   dummyLongItem,
   dummyLongItem,

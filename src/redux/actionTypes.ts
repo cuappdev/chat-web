@@ -11,4 +11,4 @@ export enum SectionName {
 
 export type AppAction =
   | { type: typeof CHANGE_SECTION; sectionName: SectionName }
-  | { type: typeof SELECT_ITEM; item: InboxItem | undefined };
+  | { type: typeof SELECT_ITEM; item?: InboxItem };

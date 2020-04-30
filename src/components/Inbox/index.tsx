@@ -15,16 +15,16 @@ import { DispatchProps } from 'components/dispatchProps';
 import { InboxItem } from 'models';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { selectInboxItem } from 'redux/actions';
 import { AppAction } from 'redux/actionTypes';
 import { AppState } from 'redux/reducer';
-import { selectInboxItem } from 'redux/actions';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
 export interface InboxComponentProps extends DispatchProps {
   unresolvedItems: InboxItem[];
   resolvedItems: InboxItem[];
-  selectedItem: InboxItem | undefined;
+  selectedItem?: InboxItem;
 }
 
 enum InboxSection {
@@ -58,7 +58,7 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
     }
   };
 
-  const itemToggled = (item: InboxItem | undefined) => {
+  const itemToggled = (item?: InboxItem) => {
     dispatch(selectInboxItem(item));
   };
 
@@ -66,18 +66,24 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
     e.stopPropagation();
   };
 
-  const inboxItemComponent = (item: InboxItem) => {
+  const getInboxItemComponent = (item: InboxItem, index: number) => {
     const selected = item === selectedItem;
     const select = () => itemToggled(item);
     const deselect = () => itemToggled(undefined);
 
     return selected ? (
-      <InboxItemContainer button disableRipple selected onClick={deselect}>
+      <InboxItemContainer
+        button
+        disableRipple
+        selected
+        onClick={deselect}
+        key={index}
+      >
         <Checkbox size="small" disableRipple onClick={checked} />
         <InboxItemText primary={item.title} secondary={item.message} />
       </InboxItemContainer>
     ) : (
-      <InboxItemContainer button disableRipple onClick={select}>
+      <InboxItemContainer button disableRipple onClick={select} key={index}>
         <Checkbox size="small" disableRipple onClick={checked} />
         <InboxItemText primary={item.title} secondary={item.message} />
       </InboxItemContainer>
@@ -124,8 +130,8 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
         >
           <Divider />
           <Collapse in={unresolvedOpen} timeout="auto" unmountOnExit>
-            {filteredItems(unresolvedItems).map((item) =>
-              inboxItemComponent(item),
+            {filteredItems(unresolvedItems).map((item, index) =>
+              getInboxItemComponent(item, index),
             )}
           </Collapse>
         </List>
@@ -146,8 +152,8 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
         >
           <Divider />
           <Collapse in={resolvedOpen} timeout="auto" unmountOnExit>
-            {filteredItems(resolvedItems).map((item) =>
-              inboxItemComponent(item),
+            {filteredItems(resolvedItems).map((item, index) =>
+              getInboxItemComponent(item, index),
             )}
           </Collapse>
         </List>

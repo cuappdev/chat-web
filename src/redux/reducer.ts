@@ -8,7 +8,7 @@ import { InboxItem } from 'models';
 
 export interface AppState {
   sectionName: SectionName;
-  selectedItem: InboxItem | undefined;
+  selectedItem?: InboxItem;
 }
 
 export const initialState: AppState = {
@@ -23,12 +23,12 @@ export default function reducer(
   switch (action.type) {
     case CHANGE_SECTION:
       return {
+        ...state,
         sectionName: action.sectionName,
-        selectedItem: state.selectedItem,
       };
     case SELECT_ITEM:
       return {
-        sectionName: state.sectionName,
+        ...state,
         selectedItem: action.item,
       };
     default:

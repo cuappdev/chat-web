@@ -1,4 +1,5 @@
-import { Grid } from '@material-ui/core';
+import { Box as MUIBox, Grid as MUIGrid } from '@material-ui/core';
+import { AppPicker } from 'components';
 import { DispatchProps } from 'components/dispatchProps';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -36,44 +37,69 @@ export const SideBarComponent: React.FunctionComponent<SideBarProps> = ({
   };
 
   return (
-    <Container container direction="column">
-      <AppName>patch</AppName>
-      {sectionComponent(SectionName.BugReports)}
-      {sectionComponent(SectionName.CustomerService)}
-      {sectionComponent(SectionName.FeatureRequests)}
-    </Container>
+    <React.Fragment>
+      <Grid item xs={12}>
+        <AppName>Ithaca Transit</AppName>
+      </Grid>
+      <Grid item xs={3}>
+        <AppPicker />
+      </Grid>
+      <Grid item xs={9}>
+        <Box>
+          {sectionComponent(SectionName.BugReports)}
+          {sectionComponent(SectionName.CustomerService)}
+          {sectionComponent(SectionName.FeatureRequests)}
+        </Box>
+      </Grid>
+    </React.Fragment>
   );
 };
 
-const AppName = styled.div`
-  font-family: Roboto;
-  font-size: 48px;
-  font-weight: ${theme.fontWeights.medium};
-  color: ${theme.colors.white};
-  margin-bottom: 220px;
+const Box = styled(MUIBox)`
+  display: flex;
+  height: 83vh;
+  flex-direction: column;
+  flex: 1;
+  background-color: ${theme.colors.backgroundWash};
+  border-right-style: solid;
+  border-right-color: ${theme.colors.mediumGrey};
+  border-right-width: 1px;
 `;
 
-const Container = styled(Grid)`
-  height: 100vh;
-  width: 257.6px;
-  padding-top: 32px;
-  padding-left: 32px;
-  background-color: #585858;
+const AppName = styled(Box)`
+  height: 7vh;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 16px;
+  border-bottom-style: solid;
+  border-bottom-color: ${theme.colors.mediumGrey};
+  border-bottom-width: 1px;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: ${theme.fontWeights.medium};
+  color: ${theme.colors.black};
+`;
+
+const Grid = styled(MUIGrid)`
+  display: flex;
 `;
 
 const Section = styled.div`
   font-family: Roboto;
   font-size: 18px;
   font-weight: ${theme.fontWeights.regular};
-  color: ${theme.colors.backgroundWash};
+  color: ${theme.colors.darkGrey};
   text-align: left;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 24px;
+  padding-bottom: 7px;
+  padding-left: 16px;
+  padding-right: 16px;
 `;
 
 const SelectedSection = styled(Section)`
-  font-weight: ${theme.fontWeights.bold};
-  color: ${theme.colors.white};
+  font-weight: ${theme.fontWeights.medium};
+  color: ${theme.colors.black};
 `;
 
 const mapStateToProps = (state: AppState) => ({

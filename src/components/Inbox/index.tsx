@@ -1,8 +1,8 @@
 import {
+  Box as MUIBox,
   Checkbox as MUICheckbox,
   Collapse,
   Divider as MUIDivider,
-  Grid,
   IconButton,
   List,
   ListItem,
@@ -91,7 +91,6 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
   };
 
   const handleSearch = (event: any) => {
-    console.log('handleSearch with', event.target.value);
     setSearchQuery(event.target.value);
   };
 
@@ -110,9 +109,11 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
 
   return (
     <StylesProvider injectFirst>
-      <Container direction="column">
-        <InboxHeader>Inbox</InboxHeader>
-        <SearchBar type="text" placeholder="Search" onChange={handleSearch} />
+      <Box>
+        <SearchContainer>
+          <SearchIcon src={require('../../images/search-icon.png')} />
+          <SearchBar type="text" placeholder="Search" onChange={handleSearch} />
+        </SearchContainer>
         <List
           component="nav"
           aria-label="unresolved"
@@ -157,7 +158,7 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
             )}
           </Collapse>
         </List>
-      </Container>
+      </Box>
     </StylesProvider>
   );
 };
@@ -180,11 +181,11 @@ const Checkbox = styled(MUICheckbox)`
   }
 `;
 
-const Container = styled(Grid)`
+const Box = styled(MUIBox)`
+  height: 90vh;
   overflow: auto;
-  height: 100vh;
-  max-height: 100vh;
-  width: 387.3px;
+  display: flex;
+  flex-direction: column;
   border-right-style: solid;
   border-right-color: ${theme.colors.mediumGrey};
   border-right-width: 1px;
@@ -193,19 +194,6 @@ const Container = styled(Grid)`
 const Divider = styled(MUIDivider)`
   color: ${theme.colors.mediumGrey};
   height: 1px;
-`;
-
-const InboxHeader = styled.header`
-  display: flex;
-  min-height: 50.5px;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
-  font-size: 18px;
-  font-weight: ${theme.fontWeights.medium};
-  color: ${theme.colors.black};
-  align-items: center;
-  padding-left: 32px;
-  margin-right: 1px;
-  background-color: ${theme.colors.white};
 `;
 
 const InboxItemContainer = styled(ListItem)`
@@ -276,18 +264,31 @@ const SectionHeaderButton = styled(IconButton)`
  `;
 
 const SearchBar = styled.input`
-  width: 351.3px;
+  width: 100%;
+  background-color: ${theme.colors.backgroundWash};
+  color: ${theme.colors.darkGrey};
+  font-size: 18px;
+  font-weight: ${theme.fontWeights.regular};
+  outline: none;
+  border: none;
+`;
+
+const SearchContainer = styled(MUIBox)`
+  display: flex;
+  align-items: center;
   min-height: 31.5px;
   border-radius: 4px;
   background-color: ${theme.colors.backgroundWash};
   font-size: 18px;
   font-weight: ${theme.fontWeights.regular};
-  text-indent: 50.8px;
-  margin: 0 auto;
-  margin-top: 18px;
-  outline: none;
-  border: none;
-  display: flex;
+  margin: 18px 18px 0px;
+  padding-right: 18px;
+`;
+
+const SearchIcon = styled.img`
+  width: 16px;
+  height: 15.3px;
+  padding: 8px 18px;
 `;
 
 const mapStateToProps = (state: AppState) => ({

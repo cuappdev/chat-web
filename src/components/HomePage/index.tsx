@@ -1,4 +1,5 @@
 import { Grid as MUIGrid } from '@material-ui/core';
+import { styled as muiStyled } from '@material-ui/core/styles';
 import { Inbox, SideBar, TopBar } from 'components';
 import { InboxItem } from 'models';
 import React from 'react';
@@ -49,19 +50,19 @@ export const HomePage: React.FunctionComponent = () => {
   );
 };
 
-const Grid = styled(MUIGrid)`
-  &.MuiGrid-container {
-    display: flex;
-    height: 100vh;
-  }
-`;
+const Grid = muiStyled(MUIGrid)({
+  '&.MuiGrid-container': {
+    display: 'flex',
+    height: '100vh',
+  },
+});
 
-const NestedGridContainter = styled(MUIGrid)`
-  &.MuiGrid-container {
-    display: flex;
-    height: 90vh;
-  }
-`;
+const NestedGridContainter = styled(MUIGrid)({
+  '&.MuiGrid-container': {
+    display: 'flex',
+    height: '90vh',
+  },
+});
 
 const Header = styled.header`
   height: 10vh;

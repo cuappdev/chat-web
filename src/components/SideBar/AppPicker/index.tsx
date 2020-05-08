@@ -1,8 +1,5 @@
-import {
-  Box as MUIBox,
-  ButtonBase as MUIButton,
-  StylesProvider,
-} from '@material-ui/core';
+import { Box as MUIBox, ButtonBase as MUIButton } from '@material-ui/core';
+import { styled as muiStyled } from '@material-ui/core/styles';
 import React from 'react';
 import { connect } from 'react-redux';
 import { AppAction } from 'redux/actionTypes';
@@ -12,57 +9,55 @@ import theme from 'styles/theme';
 
 export const AppPickerComponent: React.FunctionComponent = () => {
   return (
-    <StylesProvider injectFirst>
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        height="83vh"
-      >
-        <Button>
-          <ButtonImage
-            src={require('../../../images/app-icon.png')}
-          ></ButtonImage>
-        </Button>
-        <Button>
-          <ButtonImage
-            src={require('../../../images/app-icon.png')}
-          ></ButtonImage>
-        </Button>
-        <Button>
-          <ButtonImage
-            src={require('../../../images/app-icon.png')}
-          ></ButtonImage>
-        </Button>
-        <Button>
-          <ButtonImage
-            src={require('../../../images/app-icon.png')}
-          ></ButtonImage>
-        </Button>
-      </Box>
-    </StylesProvider>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      height="83vh"
+    >
+      <Button>
+        <ButtonImage
+          src={require('../../../images/app-icon.png')}
+        ></ButtonImage>
+      </Button>
+      <Button>
+        <ButtonImage
+          src={require('../../../images/app-icon.png')}
+        ></ButtonImage>
+      </Button>
+      <Button>
+        <ButtonImage
+          src={require('../../../images/app-icon.png')}
+        ></ButtonImage>
+      </Button>
+      <Button>
+        <ButtonImage
+          src={require('../../../images/app-icon.png')}
+        ></ButtonImage>
+      </Button>
+    </Box>
   );
 };
 
-const Button = styled(MUIButton)`
-  &.MuiButtonBase-root {
-    height: 45px;
-    width: 45px;
-  }
-  border-radius: 8.2px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-`;
+const Button = muiStyled(MUIButton)({
+  '&.MuiButtonBase-root': {
+    height: '45px',
+    width: '45px',
+  },
+  borderRadius: '8.2px',
+  marginTop: '8px',
+  marginBottom: '8px',
+});
 
-const Box = styled(MUIBox)`
-  flex: 1;
-  box-sizing: border-box;
-  background-color: ${theme.colors.backgroundWash};
-  border-right-style: solid;
-  border-right-color: ${theme.colors.mediumGrey};
-  border-right-width: 1px;
-  padding-top: 8px;
-`;
+const Box = muiStyled(MUIBox)({
+  flex: 1,
+  boxSizing: 'border-box',
+  backgroundColor: `${theme.colors.backgroundWash}`,
+  borderRightStyle: 'solid',
+  borderRightColor: `${theme.colors.mediumGrey}`,
+  borderRightWidth: '1px',
+  paddingTop: '8px',
+});
 
 const ButtonImage = styled.img`
   height: 45px;

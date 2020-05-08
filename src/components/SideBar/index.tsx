@@ -1,4 +1,5 @@
 import { Box as MUIBox, Grid as MUIGrid } from '@material-ui/core';
+import { styled as muiStyled } from '@material-ui/core/styles';
 import { AppPicker } from 'components';
 import { DispatchProps } from 'components/dispatchProps';
 import React from 'react';
@@ -62,29 +63,29 @@ export const SideBarComponent: React.FunctionComponent<SideBarProps> = ({
   );
 };
 
-const Box = styled(MUIBox)`
-  flex: 1;
-  background-color: ${theme.colors.backgroundWash};
-  border-right-style: solid;
-  border-right-color: ${theme.colors.mediumGrey};
-  border-right-width: 1px;
-`;
+const Box = muiStyled(MUIBox)({
+  flex: 1,
+  backgroundColor: `${theme.colors.backgroundWash}`,
+  borderRightStyle: 'solid',
+  borderRightColor: `${theme.colors.mediumGrey}`,
+  borderRightWidth: '1px',
+});
 
-const AppName = styled(Box)`
-  box-sizing: border-box;
-  padding-left: 16px;
-  border-bottom-style: solid;
-  border-bottom-color: ${theme.colors.mediumGrey};
-  border-bottom-width: 1px;
-  font-family: Roboto;
-  font-size: 18px;
-  font-weight: ${theme.fontWeights.medium};
-  color: ${theme.colors.black};
-`;
+const AppName = muiStyled(Box)({
+  boxSizing: 'border-box',
+  paddingLeft: '16px',
+  borderBottomStyle: 'solid',
+  borderBottomColor: `${theme.colors.mediumGrey}`,
+  borderBottomWidth: '1px',
+  fontFamily: 'Roboto',
+  fontSize: '18px',
+  fontWeight: theme.fontWeights.medium,
+  color: `${theme.colors.black}`,
+});
 
-const Grid = styled(MUIGrid)`
-  display: flex;
-`;
+const Grid = muiStyled(MUIGrid)({
+  display: 'flex',
+});
 
 const Section = styled.div`
   font-family: Roboto;
@@ -96,6 +97,7 @@ const Section = styled.div`
   padding-bottom: 7px;
   padding-left: 16px;
   padding-right: 16px;
+  cursor: pointer;
 `;
 
 const SelectedSection = styled(Section)`

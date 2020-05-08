@@ -7,11 +7,10 @@ import styled from 'styled-components';
 import theme from 'styles/theme';
 
 export const TopBarComponent: React.FunctionComponent = () => {
-  return <Box></Box>;
+  return <Box height="10vh"></Box>;
 };
 
 const Box = styled(MUIBox)`
-  height: 10vh;
   flex: 1;
   background-color: ${theme.colors.backgroundWash};
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);

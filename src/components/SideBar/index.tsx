@@ -39,13 +39,20 @@ export const SideBarComponent: React.FunctionComponent<SideBarProps> = ({
   return (
     <React.Fragment>
       <Grid item xs={12}>
-        <AppName>Ithaca Transit</AppName>
+        <AppName
+          display="flex"
+          flexDirection="row"
+          alignItems="center"
+          height="7vh"
+        >
+          Ithaca Transit
+        </AppName>
       </Grid>
       <Grid item xs={3}>
         <AppPicker />
       </Grid>
       <Grid item xs={9}>
-        <Box>
+        <Box display="flex" flexDirection="column" height="83vh">
           {sectionComponent(SectionName.BugReports)}
           {sectionComponent(SectionName.CustomerService)}
           {sectionComponent(SectionName.FeatureRequests)}
@@ -56,9 +63,6 @@ export const SideBarComponent: React.FunctionComponent<SideBarProps> = ({
 };
 
 const Box = styled(MUIBox)`
-  display: flex;
-  height: 83vh;
-  flex-direction: column;
   flex: 1;
   background-color: ${theme.colors.backgroundWash};
   border-right-style: solid;
@@ -67,9 +71,6 @@ const Box = styled(MUIBox)`
 `;
 
 const AppName = styled(Box)`
-  height: 7vh;
-  flex-direction: row;
-  align-items: center;
   box-sizing: border-box;
   padding-left: 16px;
   border-bottom-style: solid;

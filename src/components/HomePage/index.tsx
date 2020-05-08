@@ -37,7 +37,7 @@ export const HomePage: React.FunctionComponent = () => {
         <Header>patch</Header>
       </Grid>
       <Grid item xs={9}>
-        <TopBar></TopBar>
+        <TopBar />
       </Grid>
       <NestedGridContainter container item xs={3}>
         <SideBar />

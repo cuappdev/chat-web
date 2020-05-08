@@ -13,7 +13,12 @@ import theme from 'styles/theme';
 export const AppPickerComponent: React.FunctionComponent = () => {
   return (
     <StylesProvider injectFirst>
-      <Box>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        height="83vh"
+      >
         <Button>
           <ButtonImage
             src={require('../../../images/app-icon.png')}
@@ -44,24 +49,15 @@ const Button = styled(MUIButton)`
     height: 45px;
     width: 45px;
   }
-  // display: flex;
-  // background-image: url(${require('../../../images/app-icon.png')});
-  // background-size: contain;
   border-radius: 8.2px;
   margin-top: 8px;
   margin-bottom: 8px;
 `;
 
 const Box = styled(MUIBox)`
-  height: 83vh;
-  box-sizing: border-box;
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  // justify-content: flex-start;
+  box-sizing: border-box;
   background-color: ${theme.colors.backgroundWash};
-  // margin: 0px !important;
   border-right-style: solid;
   border-right-color: ${theme.colors.mediumGrey};
   border-right-width: 1px;

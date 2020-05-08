@@ -109,7 +109,7 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
 
   return (
     <StylesProvider injectFirst>
-      <Box>
+      <Box height="90vh" display="flex" flexDirection="column" overflow="auto">
         <SearchContainer>
           <SearchIcon src={require('../../images/search-icon.png')} />
           <SearchBar type="text" placeholder="Search" onChange={handleSearch} />
@@ -182,10 +182,6 @@ const Checkbox = styled(MUICheckbox)`
 `;
 
 const Box = styled(MUIBox)`
-  height: 90vh;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
   border-right-style: solid;
   border-right-color: ${theme.colors.mediumGrey};
   border-right-width: 1px;

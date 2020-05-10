@@ -1,5 +1,4 @@
 import { Grid } from '@material-ui/core';
-import { DispatchProps } from 'components/dispatchProps';
 import React from 'react';
 import { connect } from 'react-redux';
 import { changeSection } from 'redux/actions';
@@ -7,6 +6,7 @@ import { AppAction, SectionName } from 'redux/actionTypes';
 import { AppState } from 'redux/reducer';
 import styled from 'styled-components';
 import theme from 'styles/theme';
+import { DispatchProps } from 'views/dispatchProps';
 
 export interface SideBarProps extends DispatchProps {
   globalSection: string;

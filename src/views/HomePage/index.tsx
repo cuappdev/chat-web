@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core';
-import { Inbox, SideBar } from 'components';
 import { InboxItem } from 'models';
 import React from 'react';
+import { Inbox, SideBar } from 'views';
 
 const dummyShortItem: InboxItem = {
   title: 'Button not working',
@@ -15,8 +15,8 @@ const dummyLongItem: InboxItem = {
 
 const searchTargetItem: InboxItem = {
   title: 'special',
-  message: 'super top secret message'
-}
+  message: 'super top secret message',
+};
 
 const dummyItems: InboxItem[] = [
   dummyShortItem,

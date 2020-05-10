@@ -11,7 +11,6 @@ import {
   StylesProvider,
 } from '@material-ui/core';
 import { ArrowDropDown, ArrowRight } from '@material-ui/icons';
-import { DispatchProps } from 'components/dispatchProps';
 import { InboxItem } from 'models';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
@@ -20,6 +19,7 @@ import { AppAction } from 'redux/actionTypes';
 import { AppState } from 'redux/reducer';
 import styled from 'styled-components';
 import theme from 'styles/theme';
+import { DispatchProps } from 'views/dispatchProps';
 
 export interface InboxComponentProps extends DispatchProps {
   unresolvedItems: InboxItem[];

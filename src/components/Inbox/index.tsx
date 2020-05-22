@@ -110,7 +110,6 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
   };
 
   return (
-    // <StylesProvider injectFirst>
     <Box height="90vh" display="flex" flexDirection="column" overflow="auto">
       <SearchContainer display="flex" alignItems="center">
         <SearchIcon src={require('../../images/search-icon.png')} />
@@ -161,7 +160,6 @@ export const InboxComponent: React.FunctionComponent<InboxComponentProps> = ({
         </Collapse>
       </List>
     </Box>
-    // </StylesProvider>
   );
 };
 
